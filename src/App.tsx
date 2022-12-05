@@ -1,30 +1,51 @@
 import React from "react";
 import "./App.css";
 import Modal, { ModalBody, ModalFooter, ModalHeader } from "./components/Modal";
+import { ProductI } from "./services/Product.service";
 
 const products = [
   {
     _id: "1",
     product_name: "Apple",
+    img_url: "",
   },
   {
-    _id: "1",
+    _id: "2",
     product_name: "Orange",
+    img_url: "",
   },
   {
-    _id: "1",
+    _id: "3",
     product_name: "Banana",
+    img_url: "",
   },
 ];
 
 function App() {
+  const [products, setProducts] = React.useState<Array<ProductI>>([]);
+  const [newProdFile, setProdFile] = React.useState<File>();
+  const [preview, setPreview] = React.useState("");
   const [newProduct, setNewProduct] = React.useState<{
     product_name: string;
     img_url: string;
   }>({ product_name: "", img_url: "" });
-
   const [showModal, setShowModal] = React.useState(false);
-  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
+  React.useEffect(() => {
+    if (!newProdFile) {
+      setPreview("");
+      return;
+    }
+    const objectUrl = URL.createObjectURL(newProdFile);
+    setPreview(objectUrl);
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [newProdFile]);
+
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setProdFile(event.target.files[0]);
+    }
+  };
   const handleAddProduct = (event: React.MouseEvent<HTMLButtonElement>) => {};
   return (
     <div className="App">
@@ -37,8 +58,15 @@ function App() {
         >
           <big>+ Add New Product</big>
         </li>
-        {products?.map((product) => (
-          <li key={product._id}>{product.product_name}</li>
+        {products?.map((product: ProductI) => (
+          <li key={product._id}>
+            <img
+              className="product-img"
+              src={product.img_url}
+              alt={product.product_name}
+            />
+            <span>{product.product_name}</span>
+          </li>
         ))}
       </ul>
       <Modal show={showModal} setShow={setShowModal} hideCloseButton={false}>
@@ -58,8 +86,13 @@ function App() {
               }
             />
             <input type="file" onChange={onFileChange} />
-            {newProduct.img_url.length ? (
-              <img alt="not found" width={"250px"} src={newProduct.img_url} />
+            {newProdFile && preview ? (
+              <img
+                alt="Not Found"
+                style={{ marginTop: "10px" }}
+                width={"250px"}
+                src={preview}
+              />
             ) : null}
           </div>
         </ModalBody>

@@ -71,11 +71,13 @@ button {
 }
 
 .product-list li {
-  height: 150px;
+  height: 170px;
   background: var(--color-gray);
   flex: 1 1 calc(30% - 4px);
+  gap: 10px;
   border-radius: var(--border-radius);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -105,4 +107,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.product-img {
+  border-radius: 10px;
+  width: 150px;
 }
