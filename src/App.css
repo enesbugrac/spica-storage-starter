@@ -1,38 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --color-background: hsl(216, 8%, 12%);
+  --color-blue: hsl(208, 100%, 50%);
+  --color-gray: hsl(210, 3%, 25%);
+  --color-red: hsl(7, 73%, 35%);
+  --color-white: white;
+  --border-radius: 5px;
+
+  background-color: var(--color-background);
+  color: var(--color-white);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+ul {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+button {
+  font-size: 1rem;
+  color: inherit;
+  border: none;
+  border-radius: var(--border-radius);
+}
+
 .App {
-  text-align: center;
-}
+  height: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 32px;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 32px;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 8px;
+}
+
+.product-list li {
+  height: 150px;
+  background: var(--color-gray);
+  flex: 1 1 calc(30% - 4px);
+  border-radius: var(--border-radius);
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
-
-.App-link {
-  color: #61dafb;
+.product-input {
+  padding: 5px 8px;
+  height: 30px;
+  margin-bottom: 10px;
+  width: 90%;
+  background-color: var(--color-white);
+  border-color: transparent;
+  color: var(--color-red);
+  border-radius: var(--border-radius);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.product-input:focus {
+  outline: 2px solid var(--color-red);
+}
+.product-input::placeholder {
+  opacity: 0.8;
+  color: var(--color-background);
+}
+.submit-button {
+  background-color: var(--color-blue);
+  width: 50%;
+  height: 40px;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
