@@ -3,24 +3,6 @@ import "./App.css";
 import Modal, { ModalBody, ModalFooter, ModalHeader } from "./components/Modal";
 import { Product } from "./services/Product.service";
 
-const products = [
-  {
-    _id: "1",
-    product_name: "Apple",
-    img_url: "",
-  },
-  {
-    _id: "2",
-    product_name: "Orange",
-    img_url: "",
-  },
-  {
-    _id: "3",
-    product_name: "Banana",
-    img_url: "",
-  },
-];
-
 function App() {
   const [products, setProducts] = React.useState<Array<Product>>([]);
   const [newProdFile, setProdFile] = React.useState<File>();
