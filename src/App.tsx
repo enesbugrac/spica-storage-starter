@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Modal, { ModalBody, ModalFooter, ModalHeader } from "./components/Modal";
-import { ProductI } from "./services/Product.service";
+import { Product } from "./services/Product.service";
 
 const products = [
   {
@@ -22,7 +22,7 @@ const products = [
 ];
 
 function App() {
-  const [products, setProducts] = React.useState<Array<ProductI>>([]);
+  const [products, setProducts] = React.useState<Array<Product>>([]);
   const [newProdFile, setProdFile] = React.useState<File>();
   const [preview, setPreview] = React.useState("");
   const [newProduct, setNewProduct] = React.useState<{
@@ -58,7 +58,7 @@ function App() {
         >
           <big>+ Add New Product</big>
         </li>
-        {products?.map((product: ProductI) => (
+        {products?.map((product: Product) => (
           <li key={product._id}>
             <img
               className="product-img"
