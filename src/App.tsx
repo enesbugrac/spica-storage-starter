@@ -40,13 +40,13 @@ function App() {
       <ul className="product__list">
         <li
           onClick={(e) => setShowModal(true)}
-          style={{ cursor: "pointer" }}
+          className="card"
           key={"add_product"}
         >
           <big>+ Add New Product</big>
         </li>
         {products?.map((product: Product) => (
-          <li key={product._id}>
+          <li className="card" key={product._id}>
             <img
               className="product__img"
               src={product.img_url}
@@ -58,7 +58,7 @@ function App() {
       </ul>
       <Modal show={showModal} setShow={setShowModal} hideCloseButton={false}>
         <ModalHeader>
-          <h2>New Product</h2>
+          <div className="modal__header__text">New Product</div>
         </ModalHeader>
         <ModalBody>
           <div className="input__container">
@@ -84,9 +84,7 @@ function App() {
           </div>
         </ModalBody>
         <ModalFooter>
-          <button className="submit__button" onClick={handleAddProduct}>
-            Submit
-          </button>
+          <button onClick={handleAddProduct}>Submit</button>
         </ModalFooter>
       </Modal>
     </div>

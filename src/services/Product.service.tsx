@@ -7,12 +7,13 @@ export interface Product {
 }
 
 class ProductService {
-  private API_KEY = "<YOUR_API_KEY>";
-  private BUCKET_ID = "<YOUR_BUCKET_ID>";
+  private API_KEY = "f2bcj17laqlao3a";
+  private BUCKET_ID = "638de603ea080c002bb4c0f1";
   constructor() {
     Bucket.initialize({
       apikey: this.API_KEY,
-      publicUrl: "<YOUR_API_URL>",
+      publicUrl:
+        "https://master.spicaengine.com/spica/bucket/638de603ea080c002bb4c0f1",
     });
   }
   getProducts = () => {
